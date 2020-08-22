@@ -65,7 +65,7 @@ class MuSGD(object):
         else:
             hvp = ag.grad(grad_flatten @ self.z_0, net.parameters())
             self.clip_grad(hvp)
-            hvp_flatten = torch.cat([h.view(-1) for h in hvp])
+            hvp_flatten = torch.cat([h.reshape(-1) for h in hvp])
             if self.momentum > 0.0:
                 v_t = self.flatten_state(net)
                 self.z_0 = self.mu * (self.z_0 - (self.lr * hvp_flatten + self.lr * self.momentum * self.z_1))

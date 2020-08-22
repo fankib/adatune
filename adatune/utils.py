@@ -57,4 +57,4 @@ class ValidationGradient(object):
         val_outputs = net(val_inputs)
         val_loss_node = self.criterion(val_outputs, val_labels)
 
-        return ag.grad(val_loss_node, net.parameters())
+        return ag.grad(val_loss_node, net.parameters()), val_loss_node
